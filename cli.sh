@@ -8,6 +8,7 @@ function test {
 }
 
 test cli.sh
+test -b'{' -e'}' -f'/' -n'-' example.rsv
 
 exit
 test f1 f2 f3 - f4
