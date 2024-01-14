@@ -7,7 +7,7 @@ def encode_rsv(rows):
 	for row in rows:
 		for value in row:
 			if value is None: parts.append(b"\xFE")
-			elif len(value) > 0: parts.append(value.encode())
+			elif len(str(value)) > 0: parts.append(str(value).encode())
 			parts.append(b"\xFF")
 		parts.append(b"\xFD")
 	return b"".join(parts)
@@ -19,6 +19,13 @@ def save_rsv(rows, file_path: str):
 rows = [
 	["Hello", "🌎"],
 	[],
-	[None, ""]
+	[None, ""],
+	[1,2,3,4],
+	["","","a"],
+	[None, "", None],
+	[None],
+	["", None],
+	[""],
+	["", None, "", ""],
 ]
 save_rsv(rows, "example.rsv")

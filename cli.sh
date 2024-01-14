@@ -8,7 +8,9 @@ function test {
 }
 
 test cli.sh
-test -b'{' -e'}' -f'/' -n'-' example.rsv
+
+#test -s'[' -e']' -o'<' -c'>' -f'|' -n'null' example.rsv
+cat example.rsv | target/debug/cat-rsv | cat -n
 
 exit
 test f1 f2 f3 - f4
