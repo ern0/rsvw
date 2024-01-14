@@ -1,4 +1,4 @@
-use clap::Parser;
+use argmap;
 use std::fs::File;
 use std::io::{Read, Write};
 use std::process::exit;
@@ -12,38 +12,6 @@ const RSV_ROW_TERMINATOR: u8 = 0xFD;
 const ASCII_CR: u8 = 0x0D;
 const ASCII_LF: u8 = 0x0A;
 
-/// RSV file viewer - https://github.com/ern0/rsvw/
-#[derive(Parser, Debug)]
-#[command(author, version, about)]
-struct StringArgs {
-    /// Set NULL value - "null"
-    #[arg(short = 'n', long)]
-    null_value: Option<String>,
-
-    /// Set field separator - "|"
-    #[arg(short = 'f', long)]
-    field_separator: Option<String>,
-
-    /// Set field opening - "<"
-    #[arg(short = 'o', long)]
-    field_opening: Option<String>,
-
-    /// Set field closing - ">"
-    #[arg(short = 'c', long)]
-    field_closing: Option<String>,
-
-    /// Set line starting - "["
-    #[arg(short = 's', long)]
-    line_starting: Option<String>,
-
-    /// Set line ending - "]"
-    #[arg(short = 'e', long)]
-    line_ending: Option<String>,
-
-    /// List of RSV (or other) files to print
-    files: Vec<String>,
-}
-
 struct ByteArgs {
     null_value: Vec<u8>,
     field_separator: Vec<u8>,
@@ -54,58 +22,36 @@ struct ByteArgs {
 }
 
 fn main() {
-    let mut string_args = StringArgs::parse();
-    cleanup_args(&mut string_args);
-    let byte_args = convert_args(&string_args);
 
-    if string_args.files.is_empty() {
+    let (mut args, argv,) = argmap::parse(std::env::args());
+    args.remove(0);
+
+    eprintln!["args={:?}", &args];
+    eprintln!["argv={:?}", &argv];
+
+     let mut byte_args = ByteArgs {
+        null_value: Vec::from("null"),
+        field_separator: Vec::from("|"),
+        field_opening: Vec::from("<"),
+        field_closing: Vec::from(">"),
+        line_starting: Vec::from("["),
+        line_ending: Vec::from("]"),
+    };
+
+    //...
+
+    if args.is_empty() {
         process(std::io::stdin(), &byte_args, "(stdin)");
     }
 
-    for fnam in &string_args.files {
-        match File::open(fnam) {
+    for fnam in args {
+        match File::open(&fnam) {
             Err(reason) => {
                 println!("error opening {}: {}", &fnam, reason);
                 exit(EXIT_READ_PROBLEM);
             }
-            Ok(file) => process(file, &byte_args, fnam),
+            Ok(file) => process(file, &byte_args, &fnam),
         }
-    }
-}
-
-fn cleanup_args(args: &mut StringArgs) {
-    if args.null_value.is_none() {
-        args.null_value = Some(String::from("null"));
-    }
-
-    if args.field_separator.is_none() {
-        args.field_separator = Some(String::from("|"));
-    }
-    if args.field_opening.is_none() {
-        args.field_opening = Some(String::from("<"));
-    }
-    if args.field_closing.is_none() {
-        args.field_closing = Some(String::from(">"));
-    }
-    if args.line_starting.is_none() {
-        args.line_starting = Some(String::from("["));
-    }
-    if args.line_ending.is_none() {
-        args.line_ending = Some(String::from("]"));
-    }
-
-    args.files.retain(|value| *value != "-");
-    args.files.retain(|value| *value != "--");
-}
-
-fn convert_args(string_args: &StringArgs) -> ByteArgs {
-    ByteArgs {
-        null_value: string_args.null_value.clone().unwrap().into_bytes(),
-        field_separator: string_args.field_separator.clone().unwrap().into_bytes(),
-        field_opening: string_args.field_opening.clone().unwrap().into_bytes(),
-        field_closing: string_args.field_closing.clone().unwrap().into_bytes(),
-        line_starting: string_args.line_starting.clone().unwrap().into_bytes(),
-        line_ending: string_args.line_ending.clone().unwrap().into_bytes(),
     }
 }
 

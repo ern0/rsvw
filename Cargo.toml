@@ -9,4 +9,4 @@ repository = "https://github.com/ern0/rsvw/"
 edition = "2021"
 
 [dependencies]
-clap = { version = "4.4.16", features = ["derive"] }
+argmap = "1.1.2"

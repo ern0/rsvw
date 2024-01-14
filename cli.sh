@@ -7,9 +7,9 @@ function test {
 	echo ' '
 }
 
-test cli.sh
+//test cli.sh
 
-test -s'<line>' -e'</line>' -o'<field>' -c'</field>' -f -n'<null/>' example.rsv
+test -s'<line>' -e'</line>' -o'<field>' -c'</field>' -f' ' -n'<null/>' example.rsv
 
 exit
 test f1 f2 f3 - f4
