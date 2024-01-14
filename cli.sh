@@ -3,14 +3,14 @@ clear
 
 function test {
 	echo [cat-rsv $@]
-	target/debug/cat-rsv $@ | cat -n
+	target/debug/rsvw $@ | cat -n
 	echo ' '
 }
 
 test cli.sh
 
 #test -s'[' -e']' -o'<' -c'>' -f'|' -n'null' example.rsv
-cat example.rsv | target/debug/cat-rsv | cat -n
+cat example.rsv | target/debug/rsvw | cat -n
 
 exit
 test f1 f2 f3 - f4
