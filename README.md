@@ -39,6 +39,21 @@ rsvw 1.0.0 - RSV viewer - https://github.com/ern0/rsvw"
     -h, --help
 ```
 
+## Build and install
+
+You will need [Rust compiler installed](https://www.rust-lang.org/learn/get-started).
+
+Build:
+```
+$ cargo build --release
+(...)
+```
+
+Install:
+```
+$ sudo cp target/release/rsvw /usr/local/bin
+```
+
 ## Plans
 
 There's no such as final version of a software.
