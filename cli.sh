@@ -7,13 +7,8 @@ function test {
 	echo ' '
 }
 
-//test cli.sh
-
-test -s'<line>' -e'</line>' -o'<field>' -c'</field>' -f' ' -n'<null/>' example.rsv
-
-exit
-test f1 f2 f3 - f4
-test 
-test -n file
-echo [rsvw $@]
+echo filter
 cat example.rsv | target/debug/rsvw | cat -n
+echo ' '
+test --line-start=""  -e'' -o'<value>' -c'</value>' -f"" -n'<null/>' example.rsv
+test -s "<line>" -e'</line>' -o'<value>' -c'</value>' -f"" -n'<null/>' example.rsv
