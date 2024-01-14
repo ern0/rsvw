@@ -16,7 +16,7 @@ Easy to create, easy to read,
 payload can be any UTF-8 character.
 
 For more info and examples,
-see the (specification)[https://github.com/Stenway/RSV-Specification].
+see the [specification](https://github.com/Stenway/RSV-Specification).
 
 ## Usage
 
