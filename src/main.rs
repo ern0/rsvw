@@ -12,8 +12,9 @@ const RSV_ROW_TERMINATOR: u8 = 0xFD;
 const ASCII_CR: u8 = 0x0D;
 const ASCII_LF: u8 = 0x0A;
 
-/// RSV file viewer - https://github.com/ern0/rsvw/ - https://github.com/ern0/cat-rsv/
+/// RSV file viewer - https://github.com/ern0/rsvw/
 #[derive(Parser, Debug)]
+#[command(author, version, about)]
 struct StringArgs {
     /// Set NULL value - "null"
     #[arg(short = 'n', long)]

@@ -1,8 +1,12 @@
 [package]
 name = "rsvw"
 version = "1.0.0"
+description = "RSV file viewer"
+authors = ["ern0 <ern0@linkbroker.hu>"]
+license-file = "LICENSE"
+readme = "README.md"
+repository = "https://github.com/ern0/rsvw/"
 edition = "2021"
 
 [dependencies]
 clap = { version = "4.4.16", features = ["derive"] }
-
