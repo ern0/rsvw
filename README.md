@@ -86,3 +86,8 @@ Delimiter characters
 should be read 
 from a user preference file,
 e.g. `~/.rsvw-rc`.
+
+## Authors
+
+- [ern0](https://github.com/ern0/rsvw) (original)
+- [H2CO3](https://github.com/H2CO3) (refactor)
