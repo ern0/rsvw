@@ -37,7 +37,12 @@ rsvw 1.0.0 - RSV viewer - https://github.com/ern0/rsvw"
     -s, --line-starting      default: "["
     -e, --line-ending        default: "]"
     -h, --help
+
+    How to set empty string value to an option:
+      rsvw -f'' -- example.rsv
 ```
+The empty string (`''`) is unnecessary, 
+but it's easier to understand.
 
 ## Build and install
 
