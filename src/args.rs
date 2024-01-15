@@ -8,7 +8,7 @@ pub struct Args {
     pub field_separator: String,
     #[clap(short = 'o', long = "field-opening", default_value = "<")]
     pub field_opening: String,
-    #[clap(short = 'c', long = "field-closing", default_value = "<")]
+    #[clap(short = 'c', long = "field-closing", default_value = ">")]
     pub field_closing: String,
     #[clap(short = 's', long = "line-starting", default_value = "[")]
     pub line_starting: String,
