@@ -1,6 +1,9 @@
 use clap::Parser;
 
 #[derive(Clone, Debug, Parser)]
+#[command(version, after_help = 
+    "  How to set empty string value to an option:\n    rsvw -f'' -- example.rsv\n"
+)]
 pub struct Args {
     #[clap(short = 'n', long = "null-value", default_value = "null")]
     pub null_value: String,

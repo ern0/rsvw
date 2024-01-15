@@ -1,6 +1,6 @@
 [package]
 name = "rsvw"
-version = "1.0.0"
+version = "1.1.0"
 description = "RSV file viewer"
 authors = ["ern0 <ern0@linkbroker.hu>"]
 license-file = "LICENSE"
